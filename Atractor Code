@@ -1,4 +1,6 @@
 import numpy as np, matplotlib.pyplot as plt, matplotlib.animation as animation
+import datetime
+
 
 x, y, z = 0, 1, 10  # ... estado inicial
 
@@ -37,14 +39,23 @@ fig = plt.figure('Atrator', facecolor='k', figsize=(10, 9))
 fig.tight_layout()
 ax = fig.add_subplot(projection='3d')
 
+start_time = datetime.datetime.now()
+
+
 
 def update(i):  # ... criando a animação
+
+    current_time = datetime.datetime.now()
+    elapsed_seconds = (current_time - start_time).total_seconds()
+
     ax.view_init(-6, -56 -- i / 2)
     ax.clear()
     ax.set(facecolor='k')
     ax.set_axis_off()
+    ax.set_title(f"Atrator - Tempo: {elapsed_seconds:.2f} segundos", color='white')
     ax.plot(evol[:i, 0], evol[:i, 1], evol[:i, 2], color='lime', lw=0.9)
 
 
 ani = animation.FuncAnimation(fig, update, np.arange(15000), interval=2, repeat=False)
 plt.show()
+print(" \n\n\n\n Simulação Terminada.")
